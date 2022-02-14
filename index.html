@@ -1,40 +1,200 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+	<title>C# dla testerów automatyzujących</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/league.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Wprowadzenie do Selenium dla testerów automatyzujących</h2>
+				<p>Autor: Michał Dobrzycki</p>
+			</section>
+			
+			<section>
+				<section>
+					<h2>Selenium Teoria</h2>
+					<p><a href="https://www.selenium.dev/documentation/">Dokumentacja Selenium</a></p>
+				</section>
+
+				<section>
+					<p>Czym jest Selenium WebDriver?</p>
+					<p>To narzędzie do automatyzacji pracy z przeglądarką.</p>
+					<p>Narzędzie dojrzałe, aktualnie mamy wersję 4.1 (a na rynku jest od 2004 roku)</p>
+					<p>Pozwala pisać testy w większości języków programowania.</p>
+					<p>Składa się z paru <a href="https://www.selenium.dev/documentation/overview/components/">komponentów</a></p>					
+				</section>
+
+				<section>
+					<p>Czym nie jest Selenium WebDriver?</p>
+					<p>Kompletnym narzędziem do testowania.</p>
+					<p>Rozwiązaniem wszystkich naszych bolączek.</p>
+				</section>
+
+				<section>
+					<p>Czy Selenium WebDriver umie sterować bezpośrednio przeglądarką?</p>
+					<p>Selenium do pracy potrzebuje driverów -> aplikacji tworzonych przez producentów przeglądarki.</p>
+					<p>Większość producentów dostarcza drivery do swoich przeglądarek.</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Selenium konfiguracja</h2>
+					<p><a href="https://www.selenium.dev/documentation/webdriver/getting_started/">Selenium Getting Started</a></p>
+				</section>
+
+				<section>
+					<p>Paczki do zainstalowania nugetem</p>
+					<ul>
+						<li>Paczka Selenium.WebDriver</li>
+						<li>Paczka NUnit</li>
+						<li>NUnit3TestAdapter</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Będziemy potrzebować drivera w wersji kompatybilnej z przeglądarką na naszym komputerze.</p>
+				</section>
+
+				<section>
+					<p>Sposoby pobierania driverów - TODO</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Nasz pierwszy skrypt</h2>
+				</section>
+
+				<section>
+					<p>Sklonujcie projekt i robimy zadanie 1</p>
+					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Wyszukiwanie i interakcje z elementami</h2>
+				</section>
+				
+				<section>
+					<p>Szukanie elementów po:</p>
+					<ul>
+						<li>id</li>
+						<li>name</li>
+						<li>xpath</li>
+						<li>css selector</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<p>Metody IWebDriver</p>
+					<ul>
+						<li>Navigate()</li>
+						<li>Manage()</li>
+						<li>FindElement()</li>
+						<li>Quit()</li>
+					</ul>
+				</section>
+
+
+
+				<section>
+					<p>Metody IWebElement:</p>
+					<ul>
+						<li>FindElement()</li>
+						<li>Click()</li>
+						<li>Clear()</li>
+						<li>SendKeys()</li>
+						<li>GetAttribute()</li>
+						<li>Submit()</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Zadanie 2 do zrobienia</p>
+					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
+				</section>
+
+
+				<section>
+					<p>Specjalny element, czyli SelectElement</p>
+					<p><a href="https://www.selenium.dev/documentation/webdriver/elements/select_lists/"">Przykład</a></p>
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h2>Waity</h2>
+					<p><a href="https://www.selenium.dev/documentation/webdriver/waits/">Dokumentacja Waitów</a></p>
+				</section>
+
+				<section>
+					<p>Implicit Wait</p>
+				</section>
+
+				<section>
+					<p>Explicit Wait</p>
+				</section>
+
+				<section>
+					<p>Fluent Wait</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Praca z plikami</h2>
+				</section>
+				<section>
+					<p>Upload plików</p>
+				</section>
+
+				<section>
+					<p>Pobieranie plików</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>Page Object Pattern</h2>
+				</section>
+			</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'h/v',
+			progress: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
 </html>
