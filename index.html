@@ -66,11 +66,7 @@
 				</section>
 
 				<section>
-					<p>Będziemy potrzebować drivera w wersji kompatybilnej z przeglądarką na naszym komputerze.</p>
-				</section>
-
-				<section>
-					<p>Sposoby pobierania driverów - TODO</p>
+					<p>Będziemy jeszcze potrzebować drivera w wersji kompatybilnej z przeglądarką na naszym komputerze.</p>
 				</section>
 			</section>
 
@@ -91,19 +87,9 @@
 				</section>
 				
 				<section>
-					<p>Szukanie elementów po:</p>
-					<ul>
-						<li>id</li>
-						<li>name</li>
-						<li>xpath</li>
-						<li>css selector</li>
-					</ul>
-				</section>
-
-
-				<section>
 					<p>Metody IWebDriver</p>
 					<ul>
+						<li>Url - property nie funkcja</li>
 						<li>Navigate()</li>
 						<li>Manage()</li>
 						<li>FindElement()</li>
@@ -111,12 +97,11 @@
 					</ul>
 				</section>
 
-
-
 				<section>
 					<p>Metody IWebElement:</p>
 					<ul>
 						<li>FindElement()</li>
+						<li>FindElements()</li>
 						<li>Click()</li>
 						<li>Clear()</li>
 						<li>SendKeys()</li>
@@ -126,14 +111,67 @@
 				</section>
 
 				<section>
+					<p>Szukanie elementów po:</p>
+					<ul>
+						<li>By.Id</li>
+						<li>By.Name</li>
+						<li>By.XPath</li>
+						<li>By.CssSelector</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Dobre rady:</p>
+					<ul>
+						<li>SetUp - startujemy i konfigurujemy przeglądarkę</li>
+						<li>TearDown - zamykamy przeglądarkę (pamiętajcie o driver.Quit()</li>
+						<li>FindElement - zwraca IWebElement, więc zapisujmy to co znajdziemy</li>
+						<li>Nazywajcie dobrze zmienne (element1, element2 to NIE są dobre nazwy zmiennych)</li>
+					</ul>
+				</section>
+
+				<section>
 					<p>Zadanie 2 do zrobienia</p>
 					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
 				</section>
 
+				<section>
+					<p>.FindElements()</p>
+					<p>Możemy zwracać listę (tablicę na sterydach) pasujących WebElementów</p>
+					<pre><code>IList &gt;IWebElement&lt; elements = driver.FindElements(By.CssSelector("p"));</code></pre>
+				</section>
+
+				<section>
+					<p>Konsola i walidacja selektorów</p>
+					<p>CSS Selector:</p>
+					<pre><code>$$(".inventory_item_name")</code></pre>
+					<p>XPath:</p>
+					<pre><code>$x("//a")</code></pre>
+					<p>Obydwie funkcje mają overload z $0 (szukamy w aktualnie zaznaczonym elemencie).</p>
+				</section>
+
+				<section>
+					<p>Property IWebElement:</p>
+					<ul>
+						<li>Text</li>
+						<li>TagName</li>
+						<li>Selected</li>
+					</ul>
+				</section>				
+
+				<section>
+					<p>Zadanie 4 do zrobienia</p>
+					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
+				</section>
 
 				<section>
 					<p>Specjalny element, czyli SelectElement</p>
 					<p><a href="https://www.selenium.dev/documentation/webdriver/elements/select_lists/"">Przykład</a></p>
+				</section>
+
+				<section>
+					<p>Zadanie 4 i 5 do zrobienia</p>
+					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
 				</section>
 			</section>
 
