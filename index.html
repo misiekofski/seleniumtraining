@@ -98,6 +98,36 @@
 				</section>
 
 				<section>
+					<pre><code>IWebDriver driver = new ChromeDriver;
+driver.Url="https://www.bing.com";
+driver.Quit();</code></pre>
+				</section>
+
+				<section>
+					<p>Szukanie elementów po:</p>
+					<ul>
+						<li>By.Id()</li>
+						<li>By.Name()</li>
+						<li>By.XPath()</li>
+						<li>By.CssSelector()</li>
+					</ul>
+				</section>
+				
+				<section>
+					<pre><code>IWebElement loginButton = driver.FindElement(By.Id("login"));</code></pre>
+				</section>
+
+				<section>
+					<p>Css Selector, szukanie oparte na klasach css (stylowanie)</p>
+					<p><a href="https://flukeout.github.io/">Ćwiczenia CSS Selektory</a></p>
+				</section>
+
+				<section>
+					<p>XPath, szukanie oparte na strukturze HTML</p>
+					<p><a href="https://topswagcode.com/xpath/">Ćwiczenia XPath</a></p>
+				</section>
+
+				<section>
 					<p>Metody IWebElement:</p>
 					<ul>
 						<li>FindElement()</li>
@@ -107,16 +137,6 @@
 						<li>SendKeys()</li>
 						<li>GetAttribute()</li>
 						<li>Submit()</li>
-					</ul>
-				</section>
-
-				<section>
-					<p>Szukanie elementów po:</p>
-					<ul>
-						<li>By.Id</li>
-						<li>By.Name</li>
-						<li>By.XPath</li>
-						<li>By.CssSelector</li>
 					</ul>
 				</section>
 
@@ -138,16 +158,20 @@
 				<section>
 					<p>.FindElements()</p>
 					<p>Możemy zwracać listę (tablicę na sterydach) pasujących WebElementów</p>
-					<pre><code>IList &gt;IWebElement&lt; elements = driver.FindElements(By.CssSelector("p"));</code></pre>
+					<pre><code>IList &lt;IWebElement&gt; elements = driver.FindElements(By.CssSelector("p"));
+foreach (IWebElement element : elements) {
+	Console.WriteLine(element.Text);
+}					</code></pre>
 				</section>
 
 				<section>
-					<p>Konsola i walidacja selektorów</p>
+					<p>Konsola i walidacja selektorów w konsoli przeglądarki</p>
 					<p>CSS Selector:</p>
 					<pre><code>$$(".inventory_item_name")</code></pre>
 					<p>XPath:</p>
 					<pre><code>$x("//a")</code></pre>
-					<p>Obydwie funkcje mają overload z $0 (szukamy w aktualnie zaznaczonym elemencie).</p>
+					<p>Obydwie funkcje mają overload z $0 (szukamy w aktualnie zaznaczonym elemencie)</p>
+					<pre><code>$$(".inventory_item_name", $0)</code></pre>
 				</section>
 
 				<section>
@@ -176,6 +200,12 @@
 				</section>
 
 				<section>
+					<pre><code>IWebElement sortDropdownElement = driver.FindElement(By.Id("..."));
+var selectDropdown = new SelectElement(sortDropdownElement);
+selectDropdown.SelectByValue("...")</code></pre>
+				</section>
+
+				<section>
 					<p>Zadanie 4 i 5 do zrobienia</p>
 					<p><a href="https://github.com/misiekofski/SeleniumWebdriver">Repo projektu</a></p>
 				</section>
@@ -190,14 +220,28 @@
 
 				<section>
 					<p>Implicit Wait</p>
+					<p>Nie zalecane, ponieważ czeka na KAŻDY element określoną ilość czasu</p>
+					<pre><code>driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);</code></pre>
 				</section>
 
 				<section>
 					<p>Explicit Wait</p>
+					<p>Nie mieszamy ich z Implicit Wait, bo czasy zaczynają nam się sumować</p>
+					<pre><code>var foo = new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+    .Until(drv => drv.FindElement(By.Name("q")));</code></pre>
+				</section>
+
+				<section>
+					<p>ExpectedConditions (wymaga paczki nuget Selenium.Support</p>
+					<pre><code>new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+    .Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a/h3")));
+					</code></pre>
 				</section>
 
 				<section>
 					<p>Fluent Wait</p>
+					<p>Pozwala określić jak często bedziemy próbowali znaleźć ponownie element</p>
+					<p>Może być dobre do zredukowania ilości zapytań, jeżeli wiemy że element pojawi się późno.</p>
 				</section>
 			</section>
 
@@ -217,6 +261,38 @@
 			<section>
 				<section>
 					<h2>Page Object Pattern</h2>
+				</section>
+
+				<section>
+					<p>Założenia:</p>
+					<ul>
+						<li>Oddzielenie kodu testów od kodu strony</li>
+						<li>Łatwiej zapanować nad zmianami UI</li>
+						<li>Każda widoczna część strony (lub całosć) jest obiektem</li>
+						<li>Wszystkie lokatory WebElementów są prywatne</li>
+						<li>Nie używamy w Page Objectach asercji</li>
+						<li>Nie używamy lokatorów w testach</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Przykład testu:</p>
+					<pre><code>LoginPage loginPage = new LoginPage(driver);
+loginPage.loginAs("user@firma.pl", "Password1");
+Assert.assertEquals("User FullName", loginPage.getLoggedUsername());</code></pre>
+				</section>
+
+				<section>
+					<p>Teraz zostało tylko napisać LoginPage, prywatne lokatory elementów i jej dwie publiczne metody</p>
+				</section>
+
+				<section>
+					<p>Linki warte przeczytania:</p>
+					<ul>
+						<li><a href="https://www.selenium.dev/selenium/docs/api/dotnet/">https://www.selenium.dev/selenium/docs/api/dotnet/</a></li>
+						<li><a href="https://martinfowler.com/bliki/PageObject.html">https://martinfowler.com/bliki/PageObject.html</a></li>
+						<li><a href="https://www.automatetheplanet.com/page-object-pattern/">https://www.automatetheplanet.com/page-object-pattern/</a></li>
+					</ul>
 				</section>
 			</section>
 		</div>
