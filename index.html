@@ -232,9 +232,9 @@ selectDropdown.SelectByValue("...")</code></pre>
 				</section>
 
 				<section>
-					<p>ExpectedConditions (wymaga paczki nuget Selenium.Support</p>
+					<p>ExpectedConditions (wymaga Selenium 3.141 - porzucono w Selenium 4)</p>
 					<pre><code>new WebDriverWait(driver, TimeSpan.FromSeconds(3))
-    .Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a/h3")));
+	.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//a/h3")));
 					</code></pre>
 				</section>
 
@@ -242,6 +242,17 @@ selectDropdown.SelectByValue("...")</code></pre>
 					<p>Fluent Wait</p>
 					<p>Pozwala określić jak często bedziemy próbowali znaleźć ponownie element</p>
 					<p>Może być dobre do zredukowania ilości zapytań, jeżeli wiemy że element pojawi się późno.</p>
+				</section>
+
+				<section>
+					<p>Przykład czekania aż element zniknie:</p>
+					<pre><code>WebDriverWait wait = new WebDriverWait(driver, timeout: TimeSpan.FromSeconds(10))
+{
+	PollingInterval = TimeSpan.FromSeconds(1),
+};
+
+wait.Until(driver =>
+	!driver.FindElement(By.Id("ajaxBusy")).Displayed);</code></pre>
 				</section>
 			</section>
 
