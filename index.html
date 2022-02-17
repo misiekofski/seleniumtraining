@@ -254,6 +254,14 @@ selectDropdown.SelectByValue("...")</code></pre>
 wait.Until(driver =>
 	!driver.FindElement(By.Id("ajaxBusy")).Displayed);</code></pre>
 				</section>
+
+				<section>
+					<p>Przykład Actions (using OpenQA.Selenium.Interactions;)</p>
+					<pre><code>IWebElement expandingDiv = driver.FindElement(By.CssSelector(".expand"));
+Actions action = new Actions(driver);
+action.MoveToElement(expandingDiv);
+action.Perform();</code></pre>
+				</section>
 			</section>
 
 			<section>
