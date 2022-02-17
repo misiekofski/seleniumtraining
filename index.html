@@ -270,10 +270,20 @@ action.Perform();</code></pre>
 				</section>
 				<section>
 					<p>Upload plików</p>
+					<p>Dodajemy folder files do którego wrzucamy plik kotek.jpg, ustawiając mu property Copy always</p>
+					<pre><code>string pathToFile = @".\files\kotek.jpg";
+fileInput.SendKeys(Path.GetFullPath(pathToFile));</code></pre>
 				</section>
 
 				<section>
 					<p>Pobieranie plików</p>
+					<p>Musimy ustawić opcje ChromeDrivera (pamiętajcie o nie zamykaniu przeglądarki zanim nie skończymy pobierać pliku)</p>
+					<pre><code>ChromeOptions options = new ChromeOptions();
+options.AddUserProfilePreference("download.default_directory", @"C:\downloads\");
+options.AddUserProfilePreference("disable-popup-blocking", "true");
+options.AddUserProfilePreference("download.prompt_for_download", false);
+driver = new ChromeDriver(options);
+					</code></pre>
 				</section>
 			</section>
 
@@ -317,12 +327,51 @@ Assert.assertEquals("User FullName", loginPage.getLoggedUsername());</code></pre
 
 			<section>
 				<section>
+					<h2>BDD i SpecFlow</h2>
+				</section>
+				<section>
+					<ol>
+						<li>Instalujemy extension SpecFlow</li>
+						<li>Restartujemy Visual Studio</li>
+					</ol>
+					<p><a href="https://specflow.org/">Dokumentacja SpecFlow</a></p>
+				</section>
+
+				<section>
+					<p>Przykładowy Framework</p>
+					<p><a href="https://github.com/misiekofski/dotNetSeleniumTestingFramework">Repo</a></p>
+				</section>
+
+				<section>
+					<p>Do obsługi plików JSON polecam:</p>
+					<p><a href="https://www.newtonsoft.com/json">Newtonsoft.JSON</a></p>
+					<p>Pozwala na serializację i deserializację plików JSON (json -> obiekt -> json)</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
 					<h2>Selenium Grid</h2>
 					<p>Uruchomcie docker desktop i wrzućcie komendy do cmd.exe / powershella</p>
 					<pre><code>docker pull selenium/hub:4.1.2-20220208
 docker pull selenium/node-chrome:4.1.2-20220208
 docker pull selenium/node-edge:4.1.2-20220208
 docker pull selenium/node-firefox:4.1.2-20220208</code></pre>
+				</section>
+
+				<section>
+					<p><a href="https://github.com/misiekofski/SeleniumGrid">Repozytorium</a> z projektem</p>
+				</section>
+
+				<section>
+					<p>Włączamy docker desktop</p>
+					<p>Odpalamy komendę z cmd.exe (tam gdzie jest plik docker-compose.yml)</p>
+					<pre><code>docker-compose up</code></pre>
+					<p>Odpalamy przeglądarkę na <a href="http://localhost:4444">http://localhost:4444</a></p>
+				</section>
+
+				<section>
+					<p>Analizujemy kod projektu, uruchamiamy testy i patrzymy na localhost:4444 co się dzieje.</p>
 				</section>
 			</section>
 		</div>
