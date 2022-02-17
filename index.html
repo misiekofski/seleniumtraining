@@ -159,7 +159,7 @@ driver.Quit();</code></pre>
 					<p>.FindElements()</p>
 					<p>Możemy zwracać listę (tablicę na sterydach) pasujących WebElementów</p>
 					<pre><code>IList &lt;IWebElement&gt; elements = driver.FindElements(By.CssSelector("p"));
-foreach (IWebElement element : elements) {
+foreach (IWebElement element in elements) {
 	Console.WriteLine(element.Text);
 }					</code></pre>
 				</section>
