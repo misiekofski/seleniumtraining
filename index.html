@@ -338,6 +338,17 @@ Assert.assertEquals("User FullName", loginPage.getLoggedUsername());</code></pre
 				</section>
 
 				<section>
+					<p>Piszemy w pliku .feature</p>
+					<pre><code>When I search for '.NET BDD framework'</code></pre>
+					<p>A w klasie która implementuje kroki</p>
+					<pre><code>[When(@"I search for '(.*)'"]
+public void WhenIPerformASimpleSearchOn(string searchTerm) 
+{ 
+	//kod testujący aplikację
+}</code></pre>
+				</section>
+
+				<section>
 					<p>Przykładowy Framework</p>
 					<p><a href="https://github.com/misiekofski/dotNetSeleniumTestingFramework">Repo</a></p>
 				</section>
@@ -346,6 +357,31 @@ Assert.assertEquals("User FullName", loginPage.getLoggedUsername());</code></pre
 					<p>Do obsługi plików JSON polecam:</p>
 					<p><a href="https://www.newtonsoft.com/json">Newtonsoft.JSON</a></p>
 					<p>Pozwala na serializację i deserializację plików JSON (json -> obiekt -> json)</p>
+				</section>
+
+				<section>
+					<p>Tworzymy .json z konfiguracją frameworka</p>
+					<pre><code>{
+"Browser": "Chrome",
+"DownloadFolder": "TestResult",
+"RunAsHeadless": false,
+"ImplicitWaitTimeout": 10
+}</code></pre>
+				</section>
+
+				<section>
+					<p>Tworzymy klasę która będzie zamieniać jsona na obiekt</p>
+					<pre><code>[JsonProperty("Browser", Required = Required.Always)]
+[JsonConverter(typeof(StringEnumConverter))]
+public readonly BrowserType CurrentBrowser;</code></pre>
+				</section>
+
+				<section>
+					<p>Przed uruchomieniem odczytujemy plik, tworzymy obiekt i przekazujemy jako parametr do tworzenia Drivera</p>
+					<pre><code>string settingsJson = File.ReadAllText(
+	Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestSettings.json"));
+TestSettings settings = JsonConvert.DeserializeObject<TestSettings>(settingsJson);
+Driver.Initialize(settings);</code></pre>
 				</section>
 			</section>
 
