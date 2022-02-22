@@ -380,7 +380,7 @@ public readonly BrowserType CurrentBrowser;</code></pre>
 					<p>Przed uruchomieniem odczytujemy plik, tworzymy obiekt i przekazujemy jako parametr do tworzenia Drivera</p>
 					<pre><code>string settingsJson = File.ReadAllText(
 	Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestSettings.json"));
-TestSettings settings = JsonConvert.DeserializeObject<TestSettings>(settingsJson);
+TestSettings settings = JsonConvert.DeserializeObject&lt;TestSettings&gt;(settingsJson);
 Driver.Initialize(settings);</code></pre>
 				</section>
 			</section>
